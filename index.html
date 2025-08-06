@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盛玉飞设计作品集</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #555;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .image-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #fff;
+            text-align: center;
+        }
+        .image-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>盛玉飞设计作品集</h1>
+        <p style="text-align: center;">共40张图片（3_1 至 3_39）</p>
+
+        <div id="image-gallery" class="image-gallery"></div>
+    </div>
+
+    <script>
+        // 在这里，您需要将 'your-r2-binding-name' 替换为您在 Cloudflare Pages 设置中
+        // 为 R2 存储桶绑定的名称。例如，如果您将其命名为 "MY_IMAGES"，则替换为 "MY_IMAGES"。
+        const r2BindingName = 'your-r2-binding-name'; 
+        
+        // 存储图片的共同路径，已将“露玉飞”改为“盛玉飞”
+        const basePath = `/${r2BindingName}/personal/盛玉飞设计作品集+简历3_convertedToImages/`;
+
+        const gallery = document.getElementById('image-gallery');
+
+        for (let i = 1; i <= 39; i++) {
+            // 构造图片的文件名，已将“露玉飞”改为“盛玉飞”
+            const fileName =
