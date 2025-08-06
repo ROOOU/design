@@ -3,78 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>盛玉飞设计作品集</title>
+    <title>我的R2相册</title>
     <style>
+        /* --- 页面基础样式 --- */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system， BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f2f5;
             margin: 0;
             padding: 20px;
-            background-color: #f4f4f4;
-            color: #333;
         }
-        。container {
-            max-width: 1200px;
-            margin: auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+
+        /* --- 标题样式 --- */
         h1 {
             text-align: center;
-            color: #555;
+            color: #333;
+            margin-bottom: 30px;
         }
-        。image-gallery {
+
+        /* --- 画廊容器样式 (核心) --- */
+        #gallery-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            /* 响应式网格布局：自动填充，每列最小250px，最大1fr (自适应) */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px; /* 图片之间的间距 */
+            max-width: 1200px;
+            margin: 0 auto; /* 居中显示 */
         }
-        。image-item {
-            border: 1px solid #ddd;
-            padding: 10px;
-            background: #fff;
-            text-align: center;
-        }
-        。image-item img {
-            max-width: 100%;
+
+        /* --- 图片样式 --- */
+        。gallery-item img {
+            width: 100%;
             height: auto;
-            display: block;
-            margin: 0 auto;
+            display: block; /* 消除图片下方的空白 */
+            border-radius: 8px; /* 圆角 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 轻微阴影效果 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* 平滑过渡效果 */
+        }
+
+        /* --- 鼠标悬停效果 --- */
+        。gallery-item img:hover {
+            transform: scale(1.05); /* 放大一点 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* 阴影加深 */
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>盛玉飞设计作品集</h1>
-        <p style="text-align: center;">共40张图片（1 至 39）</p>
+    <h1>我的 Cloudflare R2 图片集</h1>
 
-        <div id="image-gallery" class="image-gallery"></div>
-    </div>
+    <div id="gallery-container">
+        </div>
 
     <script>
-        // 最终代码：使用您的 R2 存储桶公共 URL 作为图片路径
-        // 这是最可靠的方案，因为我们已确认 CORS 策略已配置
-        const basePath = 'https://pub-14e2a614e47844fdb238e959f1e03905.r2.dev/shengyufei/';
+        // --- JavaScript 动态生成图片 ---
 
-        const gallery = document.getElementById('image-gallery');
+        // 1. 获取要放置图片的HTML容器元素
+        const galleryContainer = document.getElementById('gallery-container');
 
-        for (let i = 1; i <= 39; i++) {
-            const fileName = `shengyufei_${i}.png`;
-            const fullImageUrl = basePath + fileName;
+        // 2. 定义图片的基本信息
+        const imageCount = 39; // 您图片的总数
+        const baseUrl = 'https://pic.012294.xyz/shengyufei/shengyufei_'; // 从您R2设置中得到的URL前缀
 
-            const img = document.createElement('img');
-            img.src = fullImageUrl;
-            img。alt = `设计作品 ${i}`;
-            img.loading = 'lazy';
+        // 3. 循环创建并添加每张图片
+        for (let i = 1; i <= imageCount; i++) {
+            // 构建完整的图片URL
+            const imageUrl = `${baseUrl}${i}.png`;
 
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'image-item';
-            imgContainer.appendChild(img);
+            // 创建一个div容器用于包裹图片 (可选，但有助于样式控制)
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'gallery-item';
 
-            gallery.appendChild(imgContainer);
+            // 创建 <img> 元素
+            const imgElement = document.createElement('img');
+            imgElement.src = imageUrl;         // 设置图片来源地址
+            imgElement.alt = `图片 ${i}`;      // 为图片提供描述文字 (利于SEO和可访问性)
+            imgElement.loading = 'lazy';       // 设置图片懒加载，提升页面打开速度
+
+            // 将 <img> 元素放入 div 容器中
+            itemDiv.appendChild(imgElement);
+
+            // 将这个完整的图片项（div）添加到画廊容器中
+            galleryContainer.appendChild(itemDiv);
         }
     </script>
 
