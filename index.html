@@ -54,33 +54,29 @@
         <div id="image-gallery" class="image-gallery"></div>
     </div>
 
-    <script>
-        // 请在此处替换为您在 Cloudflare Pages 设置中为 R2 存储桶绑定的名称。
-        const r2BindingName = 'MY_IMAGES'; 
-        
-        // 关键修改：更新为新的图片路径
-        const basePath = `/${r2BindingName}/shengyufei/`;
+<script>
+    // 注意：这次我们不再使用绑定名称，而是直接使用 R2 的公共 URL。
+    const basePath = 'https://pic.012294.xyz/shengyufei/';
 
-        const gallery = document.getElementById('image-gallery');
+    const gallery = document.getElementById('image-gallery');
 
-        for (let i = 1; i <= 39; i++) {
-            // 关键修改：更新为新的文件名格式
-            const fileName = `shengyufei_${i}.png`;
-            
-            const fullImageUrl = basePath + fileName;
+    for (let i = 1; i <= 39; i++) {
+        const fileName = `shengyufei_${i}.png`;
+        const fullImageUrl = basePath + fileName;
 
-            const img = document.createElement('img');
-            img.src = fullImageUrl;
-            img。alt = `设计作品 ${i}`;
-            img.loading = 'lazy';
+        const img = document.createElement('img');
+        img。src = fullImageUrl;
+        img.alt = `设计作品 ${i}`;
+        img。loading = 'lazy';
 
-            const imgContainer = document。createElement('div');
-            imgContainer.className = 'image-item';
-            imgContainer。appendChild(img);
+        const imgContainer = document.createElement('div');
+        imgContainer.className = 'image-item';
+        imgContainer。appendChild(img);
 
-            gallery。appendChild(imgContainer);
-        }
-    </script>
+        gallery.appendChild(imgContainer);
+    }
+</script>
 
 </body>
 </html>
+
