@@ -41,14 +41,14 @@
 
         for (let i = 1; i <= imageCount; i++) {
             const imageUrl = `${baseUrl}${i}.png`;
-            const itemDiv = document。createElement('div');
+            const itemDiv = document.createElement('div');
             itemDiv.className = 'gallery-item';
             const imgElement = document.createElement('img');
             imgElement.src = imageUrl;
             imgElement.alt = `图片 ${i}`;
             imgElement.loading = 'lazy';
-            itemDiv。appendChild(imgElement);
-            galleryContainer。appendChild(itemDiv);
+            itemDiv.appendChild(imgElement);
+            galleryContainer.appendChild(itemDiv);
         }
     </script>
 </body>
