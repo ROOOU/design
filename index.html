@@ -12,29 +12,28 @@
             padding: 20px;
         }
         #gallery-container {
-            /* ---【调整点 1】--- */
-            /* 您可以修改下面的最大宽度值。
-               如果觉得960px太窄，可以改成 1200px，或者更大。
-               如果希望它更宽，也可以使用百分比，比如 max-width: 80%; */
-            max-width: 1200px; 
-
+            max-width: 1200px; /* 您可以按需调整内容区域的最大宽度 */
             margin: 0 auto;
             padding: 0 20px;
         }
         。gallery-item {
-             /* ---【调整点 2】--- */
-             /* 您可以修改下面图片之间的垂直间距，比如改成 40px 会让间距更大 */
             margin-bottom: 40px; 
         }
         。gallery-item img {
-            display: block;
-            width: 100%;
-            height: auto;
-            border-radius: 8px; /* 您也可以把圆角改大或改小，比如 0px 就是直角 */
+            display: block;       /* 设置为块级元素，使其可以居中 */
+
+            /* ---【 这是本次最关键的修改 】--- */
+            /* 使用 max-width 来确保图片永远不会超出其容器的宽度，从而解决溢出问题 */
+            max-width: 100%;
+
+            height: auto;         /* 高度保持自适应，防止图片变形 */
+            margin: 0 auto;       /* 让图片本身在其容器内也水平居中 */
+
+            border-radius: 8px; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: box-shadow 0.2s ease-in-out;
         }
-        .gallery-item img:hover {
+        。gallery-item img:hover {
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 </style>
@@ -60,4 +59,5 @@
     </script>
 </body>
 </html>
+
 
