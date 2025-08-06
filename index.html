@@ -3,53 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的R2相册</title>
-    <style>
+    <title>我的相册</title> <style>
         /* --- 页面基础样式 --- */
         body {
-            font-family: -apple-system， BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f0f2f5;
             margin: 0;
             padding: 20px;
         }
 
-        /* --- 标题样式 --- */
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
+        /* --- 画廊容器样式 --- */
+        #gallery-container {
+            max-width: 960px; /* 图片区域的最大宽度 */
+            margin: 0 auto;    /* 水平居中 */
+            padding: 0 20px;   /* 左右内边距，在小屏幕下提供一些空间 */
         }
 
-        /* --- 画廊容器样式 (核心) --- */
-        #gallery-container {
-            display: grid;
-            /* 响应式网格布局：自动填充，每列最小250px，最大1fr (自适应) */
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px; /* 图片之间的间距 */
-            max-width: 1200px;
-            margin: 0 auto; /* 居中显示 */
+        /* --- 单个图片容器样式 --- */
+        。gallery-item {
+            margin-bottom: 20px; /* 图片之间的垂直间距 */
         }
 
         /* --- 图片样式 --- */
         。gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block; /* 消除图片下方的空白 */
-            border-radius: 8px; /* 圆角 */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 轻微阴影效果 */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* 平滑过渡效果 */
+            display: block;       /* 确保图片独占一行 */
+            width: 100%;           /* 图片宽度填充父容器 */
+            height: auto;          /* 高度自适应，保持比例 */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: box-shadow 0.2s ease-in-out;
         }
 
-        /* --- 鼠标悬停效果 --- */
         。gallery-item img:hover {
-            transform: scale(1.05); /* 放大一点 */
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* 阴影加深 */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
-
-    <h1>我的 Cloudflare R2 图片集</h1>
 
     <div id="gallery-container">
         </div>
@@ -57,32 +47,22 @@
     <script>
         // --- JavaScript 动态生成图片 ---
 
-        // 1. 获取要放置图片的HTML容器元素
         const galleryContainer = document.getElementById('gallery-container');
+        const imageCount = 39;
+        const baseUrl = 'https://pic.012294.xyz/shengyufei/shengyufei_';
 
-        // 2. 定义图片的基本信息
-        const imageCount = 39; // 您图片的总数
-        const baseUrl = 'https://pic.012294.xyz/shengyufei/shengyufei_'; // 从您R2设置中得到的URL前缀
-
-        // 3. 循环创建并添加每张图片
         for (let i = 1; i <= imageCount; i++) {
-            // 构建完整的图片URL
             const imageUrl = `${baseUrl}${i}.png`;
 
-            // 创建一个div容器用于包裹图片 (可选，但有助于样式控制)
             const itemDiv = document.createElement('div');
             itemDiv.className = 'gallery-item';
 
-            // 创建 <img> 元素
             const imgElement = document.createElement('img');
-            imgElement.src = imageUrl;         // 设置图片来源地址
-            imgElement.alt = `图片 ${i}`;      // 为图片提供描述文字 (利于SEO和可访问性)
-            imgElement.loading = 'lazy';       // 设置图片懒加载，提升页面打开速度
+            imgElement。src = imageUrl;
+            imgElement。alt = `图片 ${i}`;
+            imgElement.loading = 'lazy';
 
-            // 将 <img> 元素放入 div 容器中
-            itemDiv.appendChild(imgElement);
-
-            // 将这个完整的图片项（div）添加到画廊容器中
+            itemDiv。appendChild(imgElement);
             galleryContainer.appendChild(itemDiv);
         }
     </script>
