@@ -3,69 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的相册</title> <style>
-        /* --- 页面基础样式 --- */
+    <title>我的相册</title>
+    <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f0f2f5;
             margin: 0;
             padding: 20px;
         }
-
-        /* --- 画廊容器样式 --- */
         #gallery-container {
-            max-width: 960px; /* 图片区域的最大宽度 */
-            margin: 0 auto;    /* 水平居中 */
-            padding: 0 20px;   /* 左右内边距，在小屏幕下提供一些空间 */
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-
-        /* --- 单个图片容器样式 --- */
         。gallery-item {
-            margin-bottom: 20px; /* 图片之间的垂直间距 */
+            margin-bottom: 20px;
         }
-
-        /* --- 图片样式 --- */
         。gallery-item img {
-            display: block;       /* 确保图片独占一行 */
-            width: 100%;           /* 图片宽度填充父容器 */
-            height: auto;          /* 高度自适应，保持比例 */
+            display: block;
+            width: 100%;
+            height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: box-shadow 0.2s ease-in-out;
         }
-
         。gallery-item img:hover {
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
-
-    <div id="gallery-container">
-        </div>
-
+    <div id="gallery-container"></div>
     <script>
-        // --- JavaScript 动态生成图片 ---
-
         const galleryContainer = document.getElementById('gallery-container');
         const imageCount = 39;
         const baseUrl = 'https://pic.012294.xyz/shengyufei/shengyufei_';
 
         for (let i = 1; i <= imageCount; i++) {
             const imageUrl = `${baseUrl}${i}.png`;
-
-            const itemDiv = document.createElement('div');
+            const itemDiv = document。createElement('div');
             itemDiv.className = 'gallery-item';
-
             const imgElement = document.createElement('img');
-            imgElement。src = imageUrl;
-            imgElement。alt = `图片 ${i}`;
+            imgElement.src = imageUrl;
+            imgElement.alt = `图片 ${i}`;
             imgElement.loading = 'lazy';
-
             itemDiv。appendChild(imgElement);
-            galleryContainer.appendChild(itemDiv);
+            galleryContainer。appendChild(itemDiv);
         }
     </script>
-
 </body>
 </html>
