@@ -49,42 +49,38 @@
 
     <div class="container">
         <h1>盛玉飞设计作品集</h1>
-        <p style="text-align: center;">共40张图片（3_1 至 3_39）</p>
+        <p style="text-align: center;">共40张图片（1 至 39）</p>
 
         <div id="image-gallery" class="image-gallery"></div>
     </div>
 
-<script>
-    // 请在此处替换为您在 Cloudflare Pages 设置中为 R2 存储桶绑定的名称。
-    const r2BindingName = 'MY_IMAGES'; 
-    
-    // 存储图片的共同路径
-    const basePath = `/${r2BindingName}/盛玉飞设计作品集+简历3_convertedToImages/`;
-
-    const gallery = document.getElementById('image-gallery');
-
-    for (let i = 1; i <= 39; i++) {
-        // 构造图片的文件名
-        const fileName = `盛玉飞设计作品集+简历3_${i}.png`;
+    <script>
+        // 请在此处替换为您在 Cloudflare Pages 设置中为 R2 存储桶绑定的名称。
+        const r2BindingName = 'MY_IMAGES'; 
         
-        // 关键修改：对文件名进行 URL 编码，以正确处理空格和 + 号等特殊字符。
-        const encodedFileName = encodeURIComponent(fileName);
-        
-        // 构造完整的图片 URL
-        const fullImageUrl = basePath + encodedFileName;
+        // 关键修改：更新为新的图片路径
+        const basePath = `/${r2BindingName}/shengyufei/`;
 
-        const img = document.createElement('img');
-        img.src = fullImageUrl;
-        img.alt = `设计作品 ${i}`;
-        img。loading = 'lazy';
+        const gallery = document.getElementById('image-gallery');
 
-        const imgContainer = document.createElement('div');
-        imgContainer.className = 'image-item';
-        imgContainer.appendChild(img);
+        for (let i = 1; i <= 39; i++) {
+            // 关键修改：更新为新的文件名格式
+            const fileName = `shengyufei_${i}.png`;
+            
+            const fullImageUrl = basePath + fileName;
 
-        gallery.appendChild(imgContainer);
-    }
-</script>
+            const img = document.createElement('img');
+            img.src = fullImageUrl;
+            img。alt = `设计作品 ${i}`;
+            img.loading = 'lazy';
+
+            const imgContainer = document。createElement('div');
+            imgContainer.className = 'image-item';
+            imgContainer。appendChild(img);
+
+            gallery。appendChild(imgContainer);
+        }
+    </script>
+
 </body>
 </html>
-
