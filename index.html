@@ -54,30 +54,29 @@
         <div id="image-gallery" class="image-gallery"></div>
     </div>
 
-<script>
-    // 注意：这次我们不再使用绑定名称，而是直接使用 R2 的公共 URL。
-    const basePath = 'https://pub-14e2a614e47844fdb238e959f1e03905.r2.dev/shengyufei/';
+    <script>
+        // 最终代码：使用您的 R2 存储桶公共 URL 作为图片路径
+        // 这是最可靠的方案，因为我们已确认 CORS 策略已配置
+        const basePath = 'https://pub-14e2a614e47844fdb238e959f1e03905.r2.dev/shengyufei/';
 
-    const gallery = document.getElementById('image-gallery');
+        const gallery = document.getElementById('image-gallery');
 
-    for (let i = 1; i <= 39; i++) {
-        const fileName = `shengyufei_${i}.png`;
-        const fullImageUrl = basePath + fileName;
+        for (let i = 1; i <= 39; i++) {
+            const fileName = `shengyufei_${i}.png`;
+            const fullImageUrl = basePath + fileName;
 
-        const img = document.createElement('img');
-        img。src = fullImageUrl;
-        img.alt = `设计作品 ${i}`;
-        img。loading = 'lazy';
+            const img = document.createElement('img');
+            img.src = fullImageUrl;
+            img。alt = `设计作品 ${i}`;
+            img.loading = 'lazy';
 
-        const imgContainer = document.createElement('div');
-        imgContainer.className = 'image-item';
-        imgContainer.appendChild(img);
+            const imgContainer = document。createElement('div');
+            imgContainer.className = 'image-item';
+            imgContainer.appendChild(img);
 
-        gallery.appendChild(imgContainer);
-    }
-</script>
+            gallery.appendChild(imgContainer);
+        }
+    </script>
 
 </body>
 </html>
-
-
