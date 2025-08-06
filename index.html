@@ -55,17 +55,34 @@
     </div>
 
     <script>
-        // 在这里，您需要将 'your-r2-binding-name' 替换为您在 Cloudflare Pages 设置中
-        // 为 R2 存储桶绑定的名称。例如，如果您将其命名为 "MY_IMAGES"，则替换为 "MY_IMAGES"。
+        // 请在此处替换为您在 Cloudflare Pages 设置中为 R2 存储桶绑定的名称。
+        // 例如，如果您将其命名为 "MY_IMAGES"，则应为 'MY_IMAGES'。
         const r2BindingName = 'MY_IMAGES'; 
         
-        // 存储图片的共同路径，已将“露玉飞”改为“盛玉飞”
+        // 存储图片的共同路径，请务必确保这个路径与 R2 中的文件夹名完全匹配
         const basePath = `/${r2BindingName}/盛玉飞设计作品集+简历3_convertedToImages/`;
 
         const gallery = document.getElementById('image-gallery');
 
+        // 注意：您的文件从 3_1 到 3_39，因此循环从 1 到 39
         for (let i = 1; i <= 39; i++) {
-            // 构造图片的文件名，已将“露玉飞”改为“盛玉飞”
+            // 构造图片的文件名
+            const fileName = `盛玉飞设计作品集+简历3_${i}.png`;
+            
+            const fullImageUrl = basePath + fileName;
 
-            const fileName =
+            const img = document.createElement('img');
+            img.src = fullImageUrl;
+            img.alt = `设计作品 ${i}`;
+            img.loading = 'lazy'; // 添加延迟加载，优化性能
 
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'image-item';
+            imgContainer.appendChild(img);
+
+            gallery.appendChild(imgContainer);
+        }
+    </script>
+
+</body>
+</html>
